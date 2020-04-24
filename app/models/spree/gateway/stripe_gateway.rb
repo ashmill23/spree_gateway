@@ -29,6 +29,7 @@ module Spree
     end
 
     def purchase(money, creditcard, gateway_options)
+      binding.pry
       provider.purchase(*options_for_purchase_or_auth(money, creditcard, gateway_options))
     end
 
