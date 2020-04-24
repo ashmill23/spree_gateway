@@ -29,7 +29,6 @@ module Spree
     end
 
     def purchase(money, creditcard, gateway_options)
-      binding.pry
       provider.purchase(*options_for_purchase_or_auth(money, creditcard, gateway_options))
     end
 
@@ -99,6 +98,7 @@ module Spree
       options[:description] = "Spree Order ID: #{gateway_options[:order_id]}"
       options[:currency] = gateway_options[:currency]
       options[:application] = app_info
+      options[:transfer_group] = gateway_options[:transfer_group] if gateway_options[:transfer_group].present?
 
       if customer = creditcard.gateway_customer_profile_id
         options[:customer] = customer
